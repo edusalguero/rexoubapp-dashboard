@@ -1,0 +1,35 @@
+footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 100px;
+    color: #99979c;
+    text-align: center;
+    background-color: #2a2730;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
+.main{
+    min-height: 400px;
+}
+
+.form-group {
+    margin-right: 2px;
+}
+
+h1, .h1 {
+    font-size: 36px;
+}
+
+.jumbotron h1, .jumbotron .h1 {
+    font-size: 36px;
+}
+
+.jumbotron p {
+    font-size: 18px;
+}
+
+.event-list li:not(:last-child){
+    border-bottom: 1px solid #99979c;
+    margin-bottom: 10px;
+}
