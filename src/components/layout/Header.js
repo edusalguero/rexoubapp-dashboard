@@ -1,35 +1,39 @@
-"use strict";
-
-import React from "react";
-import PropTypes from 'prop-types';
-import {logoutUser} from '../../actions/auth'
-
 /**
  * Header navigation bar
  */
+"use strict";
+
+import React from "react";
+import PropTypes from "prop-types";
+import {logoutUser} from "../../actions/auth";
+import {Link} from "react-router-dom";
+
 class Header extends React.Component {
 
     render() {
         const {dispatch, isAuthenticated, user} = this.props;
 
+        //noinspection CheckTagEmptyBody
         return <nav className="navbar navbar-default">
             <div className="container">
                 <div className="navbar-header">
-                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" className="navbar-toggle collapsed"
+                            aria-expanded="false" aria-controls="navbar">
                         <span className="sr-only">Toggle navigation</span>
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand" href="#">Rexoubador</a>
+                    <Link to='/' className="navbar-brand">Rexoubador</Link>
                 </div>
                 {isAuthenticated &&
                 <div id="navbar" className="navbar-collapse collapse">
                     <ul className="nav navbar-nav navbar-right">
                         <li><p className="navbar-text">Signed in as {user.firstName} {user.lastName} </p></li>
                         <li>
-                            <button type="button" onClick = {() => dispatch(logoutUser())} className="btn btn-default navbar-btn">Log out</button>
+                            <button type="button" onClick={() => dispatch(logoutUser())}
+                                    className="btn btn-default navbar-btn">Log out
+                            </button>
                         </li>
                     </ul>
                 </div>

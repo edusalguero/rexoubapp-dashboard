@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 /**
  * LogIn Form
  */
@@ -31,8 +31,9 @@ class LogIn extends React.Component {
     handleSubmit(event) {
         const username = this.refs.username;
         const password = this.refs.password;
-        const creds = { username: username.value.trim(), password: password.value.trim() }
+        const creds = {username: username.value.trim(), password: password.value.trim()}
         this.props.onFormSubmit(creds)
+        return false;
     }
 }
 

@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 /**
  * EventItem element
@@ -13,7 +13,9 @@ class EventItem extends React.Component {
         return (
             <div>
                 <date>{eventDate}</date>
-                <h4>{server.label} <small>{server.id}</small> </h4>
+                <h4>{server.label}
+                    <small>{server.id}</small>
+                </h4>
                 <p> {message}</p>
             </div>
         );

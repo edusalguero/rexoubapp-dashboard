@@ -1,4 +1,4 @@
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS} from "../constants/actionTypes";
+import {LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS} from "../constants/actionTypes";
 
 
 const auth = (state = {

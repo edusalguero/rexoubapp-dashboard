@@ -1,7 +1,4 @@
-import {
-    MESSAGES_CLEAR_ERROR,
-    MESSAGES_PUSH_ERROR
-} from "../constants/actionTypes";
+import {MESSAGES_CLEAR_ERROR, MESSAGES_PUSH_ERROR} from "../constants/actionTypes";
 /*
  * action creators
  */

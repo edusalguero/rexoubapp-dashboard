@@ -4,17 +4,13 @@
 "use strict";
 
 import React from "react";
-import EventList from  '../elements/EventList';
-import PropTypes from 'prop-types';
 import {Link} from "react-router";
 
 
-class ServersPage extends React.Component {
+class Servers extends React.Component {
 
 
     render() {
-        console.log(this.props);
-
         return <div className="row">
             <div className="col-md-12">
                 <h2>Servers</h2>
@@ -24,8 +20,4 @@ class ServersPage extends React.Component {
     }
 }
 
-
-ServersPage.propTypes = {
-
-};
-export  default ServersPage;
+export  default Servers;

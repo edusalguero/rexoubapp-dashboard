@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 /**
  * AlertDangerMessage element
@@ -15,7 +15,7 @@ class AlertDangerMessage extends React.Component {
 
     render() {
         const {message} = this.props;
-        if (message.length==0) {
+        if (message.length == 0) {
             return null;
         }
 

@@ -1,14 +1,7 @@
 // The middleware to call the API for data
-import {CALL_API} from '../middleware/api'
+import {CALL_API} from "../middleware/api";
 
-import {
-    FETCH_USER_REQUEST,
-    FETCH_USER_FAILURE,
-    FETCH_USER_SUCCESS,
-    FETCH_EVENTS_REQUEST,
-    FETCH_EVENTS_SUCCESS,
-    FETCH_EVENTS_FAILURE
-} from "../constants/actionTypes";
+import {FETCH_USER_FAILURE, FETCH_USER_REQUEST, FETCH_USER_SUCCESS} from "../constants/actionTypes";
 
 
 // Same API middlware is used to get a
