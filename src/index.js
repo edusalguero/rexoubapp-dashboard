@@ -12,24 +12,23 @@ import auth from "./reducers/auth";
 import user from "./reducers/user";
 import messages from "./reducers/messages";
 import events from "./reducers/events";
+import servers from "./reducers/servers";
 import App from "./components/layout/App.js";
 import {createLogger} from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import api from "./middleware/api";
 import {HashRouter as Router} from "react-router-dom";
 
+
 const loggerMiddleware = createLogger();
-const preloadedState = {
-    events: {
-        entries: []
-    }
-};
+const preloadedState = {};
 
 const rexobadorDashboard = combineReducers({
     auth,
     messages,
     user,
-    events
+    events,
+    servers
 });
 const store = createStore(rexobadorDashboard, preloadedState,
     applyMiddleware(thunkMiddleware, api, loggerMiddleware));

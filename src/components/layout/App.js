@@ -11,17 +11,20 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
+import {} from 'bootstrap/dist/css/bootstrap.css';
+import {} from '../../css/app.css';
+import {} from 'font-awesome/css/font-awesome.css';
 
 import Main from "./Main";
 import {withRouter} from "react-router-dom";
 
 class App extends React.Component {
     render() {
-        const {dispatch, isAuthenticated, errorMessage, user, events, isAppFetching} = this.props;
+        const {dispatch, isAuthenticated, errorMessage, user, events, servers} = this.props;
         return <div>
             <Header isAuthenticated={isAuthenticated} user={user} dispatch={dispatch}/>
             <Main errorMessage={errorMessage} dispatch={dispatch} isAuthenticated={isAuthenticated}
-                  user={user} events={events}/>
+                  user={user} events={events} servers={servers}/>
             <Footer />
         </div>;
 
@@ -38,7 +41,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    const {auth, messages, user, events} = state;
+    const {auth, messages, user, events, servers } = state;
     const {isAuthenticated, isFetching} = auth;
     const {errorMessage} = messages;
     const isAppFetching = isFetching;
@@ -47,7 +50,8 @@ const mapStateToProps = (state) => {
         errorMessage,
         isAppFetching,
         user,
-        events
+        events,
+        servers
     }
 };
 

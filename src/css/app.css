@@ -34,3 +34,41 @@ h1, .h1 {
     border-bottom: 1px solid #99979c;
     margin-bottom: 10px;
 }
+
+server{
+
+}
+
+.harvest-status{
+
+}
+.status{
+    font-weight: bold;
+}
+.status-up,.status-done
+{
+    color: green;
+}
+
+
+
+.status-down
+{
+    color: red;
+}
+
+.status-unknown
+{
+    color: orange;
+}
+
+.status-connection_error
+{
+    color: red;
+}
+
+harvesters harvester
+{
+    width: 33%;
+    display: inline-block;
+}

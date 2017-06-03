@@ -7,6 +7,8 @@ import React, {Component} from "react";
 import Dashboard from "../pages/Dashboard";
 import Index from "../pages/Index";
 import Servers from "../pages/Servers";
+import Server from "../pages/Server";
+import Uptime from "../pages/Uptime";
 import {loginUser} from "../../actions/auth";
 import {clearErrorMessages} from "../../actions/messages";
 import AlertDangerMessage from "../alert/AlertDangerMessage";
@@ -15,7 +17,7 @@ class Main extends Component {
 
     render() {
 
-        const {errorMessage, dispatch, isAuthenticated, user, events} = this.props;
+        const {errorMessage, dispatch, isAuthenticated, user, events, servers} = this.props;
         return <main className="container main">
             {errorMessage &&
             <AlertDangerMessage message={errorMessage} onClose={() => dispatch(clearErrorMessages())}/>
@@ -31,7 +33,13 @@ class Main extends Component {
                     <Dashboard dispatch={dispatch} user={user} events={events}/>
                 )}/>
                 <Route exact path="/servers" render={() => (
-                    <Servers/>
+                    <Servers servers={servers}/>
+                )}/>
+                <Route exact path="/server/:id" render={(props) => (
+                    <Server servers={servers} serverId={props.match.params.id} dispatch={dispatch} />
+                )}/>
+                <Route exact path="/uptime" render={() => (
+                    <Uptime servers={servers}/>
                 )}/>
             </authenticated>
 

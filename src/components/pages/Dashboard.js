@@ -4,11 +4,12 @@
 "use strict";
 
 import React from "react";
+import {Link} from "react-router-dom";
 import EventList from "../elements/EventList";
 import PropTypes from "prop-types";
 import {fetchUserInfo} from "../../actions/user";
 import {fetchUserEvents} from "../../actions/events";
-import {Link} from "react-router-dom";
+import {fetchUserServers} from "../../actions/servers";
 
 
 class Dashboard extends React.Component {
@@ -17,6 +18,7 @@ class Dashboard extends React.Component {
         const {dispatch} = this.props;
         dispatch(fetchUserInfo());
         dispatch(fetchUserEvents());
+        dispatch(fetchUserServers());
     }
 
     render() {
@@ -25,14 +27,15 @@ class Dashboard extends React.Component {
         const eventNumber = entries.length;
         const {serversCount, observersCount, harvestersCount, contactsCount} = user;
         return <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 col-sm-12">
                 <h2>Last events</h2>
                 { eventNumber === 0 ?
                     (<p>There are no events in the last 7 days</p>) :
                     (<EventList events={events.entries}/>)
                 }
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 col-sm-12">
+                <div className="row">
                 <div className="col-md-12">
                     <h3>{serversCount} servers</h3>
                     <p>A server is anything that can be accessed through ssh to be monitored. </p>
@@ -55,6 +58,7 @@ class Dashboard extends React.Component {
                     <p>A harvester is a monitor who obtain metrics and check their values to notify alerts and
                         warnings.</p>
                     {/*<p><a href="#" role="button">View details »</a></p>*/}
+                </div>
                 </div>
             </div>
         </div>;
