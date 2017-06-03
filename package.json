@@ -12,15 +12,19 @@
   "license": "MIT",
   "dependencies": {
     "bson-objectid": "^1.1.4",
+    "chart.js": "^2.6.0",
     "font-awesome": "^4.7.0",
     "react": "^15.5.4",
     "react-bootstrap": "^0.30.5",
+    "react-chartjs-2": "^2.1.0",
     "react-dom": "^15.3.2",
     "react-fontawesome": "^1.2.0",
+    "react-json-view": "^1.8.2",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
+    "ucfirst": "^1.0.0",
     "webpack": "^1.13.3"
   },
   "devDependencies": {
