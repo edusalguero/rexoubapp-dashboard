@@ -27,7 +27,12 @@ class Header extends React.Component {
                     <Link to='/' className="navbar-brand">Rexoubador</Link>
                 </div>
                 {isAuthenticated &&
-                <div id="navbar" className="navbar-collapse collapse">
+                <div className="navbar-collapse collapse">
+                    <ul className="nav navbar-nav">
+                        <li><Link to={{pathname: '/'}}>Dashboard</Link></li>
+                        <li><Link to={{pathname: '/servers'}}>Servers</Link></li>
+                        <li><Link to={{pathname: '/uptime'}}>Uptime</Link></li>
+                    </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li><p className="navbar-text">Signed in as {user.firstName} {user.lastName} </p></li>
                         <li>
