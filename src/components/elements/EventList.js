@@ -17,7 +17,10 @@ class EventList extends React.Component {
             </li>
         );
         return (
-            <ul className="list-unstyled event-list">{listEvents}</ul>
+            <div className="event-list">
+                <ul className="list-unstyled">{listEvents}</ul>
+            </div>
+
         );
     }
 }
