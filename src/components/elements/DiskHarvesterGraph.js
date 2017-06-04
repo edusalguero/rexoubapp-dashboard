@@ -9,14 +9,20 @@ import {Doughnut} from "react-chartjs-2";
 
 class DiskHarvesterGraph extends React.Component {
 
+    static calcPercent(total, value) {
+        return Math.round((100 * value) / total);
+    }
     render() {
         const {harvest} = this.props;
 
         const filesystems = harvest.map((disk, index) => {
+            const free = Math.round(disk.free / 1024 );
+            const used = Math.round(disk.used / 1024 );
+            const total = Math.round(free + used);
                 const data = {
-                    labels: ['Free', 'Used'],
+                    labels: ['Free ('+free+' GB)', 'Used ('+used+' GB)'],
                     datasets: [{
-                        data: [disk.free, disk.used],
+                        data: [DiskHarvesterGraph.calcPercent(total, free), DiskHarvesterGraph.calcPercent(total, used)],
                         backgroundColor: [
                             '#36A2EB',
                             '#FF6384'
@@ -27,9 +33,27 @@ class DiskHarvesterGraph extends React.Component {
                         ]}]
                 };
 
-                return <div>
-                    <p><strong>{disk.filesystem}</strong> <small>mounted on <strong>{disk.mountedOn}</strong></small></p>
-                    <Doughnut data={data}/>
+            const options = {
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    position: 'top',
+                    display: true,
+                    text: disk.filesystem + ' ('+total+' GB)'
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data.labels[tooltipItem.index] + ' (' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%)';
+                        }
+                    }
+                },
+            };
+
+                return <div key={disk.filesystem}>
+                    <Doughnut data={data} options={options}/>
                 </div>
             }
         );
