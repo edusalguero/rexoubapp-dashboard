@@ -7,25 +7,24 @@ import React from "react";
 import {Link} from "react-router-dom";
 import EventList from "../elements/EventList";
 import PropTypes from "prop-types";
-import {fetchUserInfo} from "../../actions/user";
-import {fetchUserEvents} from "../../actions/events";
-import {fetchUserServers} from "../../actions/servers";
 
+const loadData = ({ loadUser, loadEvents, loadServers }) => {
+    loadUser();
+    loadEvents();
+    loadServers();
+};
 
 class Dashboard extends React.Component {
 
-    componentDidMount() {
-        const {dispatch} = this.props;
-        dispatch(fetchUserInfo());
-        dispatch(fetchUserEvents());
-        dispatch(fetchUserServers());
+    componentWillMount() {
+        loadData(this.props);
     }
 
     render() {
         const {user, events} = this.props;
-        const entries = events.entries;
+        const {entries} = events;
         const eventNumber = entries.length;
-        const {serversCount, observersCount, harvestersCount, contactsCount} = user;
+        const {serversCount, observersCount, harvestersCount, contactsCount} = user.data;
         return <div className="row">
             <div className="col-md-6 col-sm-12">
                 <h2>Last events</h2>
@@ -67,8 +66,11 @@ class Dashboard extends React.Component {
 
 
 Dashboard.propTypes = {
-    dispatch: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    events: PropTypes.object.isRequired
+    events: PropTypes.object.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    loadEvents: PropTypes.func.isRequired,
+    loadServers: PropTypes.func.isRequired,
+
 };
 export  default Dashboard;

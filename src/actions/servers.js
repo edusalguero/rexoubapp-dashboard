@@ -5,6 +5,8 @@ import {
     FETCH_SERVERS_REQUEST, FETCH_SERVERS_SUCCESS, FETCH_SERVERS_FAILURE,
     FETCH_SERVER_REQUEST, FETCH_SERVER_SUCCESS, FETCH_SERVER_FAILURE
 } from "../constants/actionTypes";
+import {isTimeout} from "../helpers/dataLifetime";
+import {SERVERS_DATA_TTL} from "../constants/app";
 
 
 const fetchServers = () => ({
@@ -26,14 +28,32 @@ const fetchServer = (id) => ({
 });
 
 
-export function fetchUserServers() {
-    return dispatch => {
-        dispatch(fetchServers());
-    }
-}
+// Fetches servers data from API unless it is cached and not timeout
+export const loadServers = ()  => (dispatch, getState) => {
+    const {servers} =  getState();
+    const {date} =  servers;
 
-export function fetchUserServer(id) {
-    return dispatch => {
-        dispatch(fetchServer(id));
+    if(!isTimeout(date, SERVERS_DATA_TTL))
+    {
+        return null;
     }
-}
+    return dispatch(fetchServers());
+};
+
+
+export const loadServer = (serverId)  => (dispatch, getState) => {
+
+    const {servers} =  getState();
+    const {full} = servers;
+
+    const server = full[serverId];
+    if(server!== undefined
+        && server.date!==undefined
+        && !isTimeout(server.date, SERVERS_DATA_TTL))
+    {
+        return null;
+    }
+
+    return dispatch(fetchServer(serverId));
+};
+

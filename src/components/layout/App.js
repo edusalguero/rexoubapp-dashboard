@@ -11,25 +11,48 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
-import {} from 'bootstrap/dist/css/bootstrap.css';
-import {} from '../../css/app.css';
-import {} from 'font-awesome/css/font-awesome.css';
 
 import Main from "./Main";
 import {withRouter} from "react-router-dom";
 
+
+import {loadUser} from "../../actions/user";
+import {loadEvents} from "../../actions/events";
+import {loadServer, loadServers} from "../../actions/servers";
+import {loginUser, logoutUser} from "../../actions/auth";
+import {clearErrorMessages} from "../../actions/messages";
+
+
 class App extends React.Component {
     render() {
-        const {dispatch, isAuthenticated, errorMessage, user, events, servers, isAppFetching} = this.props;
+        const {
+            logoutUser,
+            loginUser,
+            loadServer,
+            loadServers,
+            loadUser,
+            loadEvents,
+            clearErrorMessages,
+            isAuthenticated,
+            errorMessage,
+            user,
+            events,
+            servers,
+            isAppFetching} = this.props;
         return <div>
-            <Header isAuthenticated={isAuthenticated} user={user} dispatch={dispatch}/>
+            <Header isAuthenticated={isAuthenticated} user={user.data} logoutUser={logoutUser}/>
             <Main errorMessage={errorMessage}
-                  dispatch={dispatch}
+                  loadServers={loadServers}
+                  loadServer={loadServer}
+                  loadUser={loadUser}
+                  loadEvents={loadEvents}
+                  loginUser={loginUser}
                   isAuthenticated={isAuthenticated}
+                  clearErrorMessages={clearErrorMessages}
                   user={user}
                   events={events}
                   servers={servers}
-                  isAppFetching={isAppFetching} />
+                  isAppFetching={isAppFetching}/>
             <Footer />
         </div>;
 
@@ -37,12 +60,19 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-    dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string,
     isAppFetching: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
     events: PropTypes.object.isRequired,
+    servers: PropTypes.object.isRequired,
+    loginUser:PropTypes.func.isRequired,
+    logoutUser:PropTypes.func.isRequired,
+    loadUser:PropTypes.func.isRequired,
+    loadEvents:PropTypes.func.isRequired,
+    loadServers:PropTypes.func.isRequired,
+    loadServer:PropTypes.func.isRequired,
+    clearErrorMessages: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -60,4 +90,12 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(connect(mapStateToProps,{
+    loadUser,
+    loadEvents,
+    loadServers,
+    loadServer,
+    logoutUser,
+    loginUser,
+    clearErrorMessages
+})(App))

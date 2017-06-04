@@ -5,13 +5,12 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import {logoutUser} from "../../actions/auth";
 import {Link} from "react-router-dom";
 
 class Header extends React.Component {
 
     render() {
-        const {dispatch, isAuthenticated, user} = this.props;
+        const {logoutUser, isAuthenticated, user} = this.props;
 
         //noinspection CheckTagEmptyBody
         return <nav className="navbar navbar-default">
@@ -36,7 +35,7 @@ class Header extends React.Component {
                     <ul className="nav navbar-nav navbar-right">
                         <li><p className="navbar-text">Signed in as {user.firstName} {user.lastName} </p></li>
                         <li>
-                            <button type="button" onClick={() => dispatch(logoutUser())}
+                            <button type="button" onClick={() => logoutUser()}
                                     className="btn btn-default navbar-btn">Log out
                             </button>
                         </li>
@@ -50,7 +49,7 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    logoutUser:PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
 };

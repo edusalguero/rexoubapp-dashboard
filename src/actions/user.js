@@ -2,6 +2,8 @@
 import {CALL_API} from "../middleware/api";
 
 import {FETCH_USER_FAILURE, FETCH_USER_REQUEST, FETCH_USER_SUCCESS} from "../constants/actionTypes";
+import {USER_DATA_TTL} from "../constants/app";
+import {isTimeout} from "../helpers/dataLifetime";
 
 const fetchUser = () => ({
     [CALL_API]: {
@@ -12,8 +14,14 @@ const fetchUser = () => ({
     }
 });
 
-export function fetchUserInfo() {
-    return dispatch => {
-        dispatch(fetchUser());
+// Fetches user data from API unless it is cached and not timeout
+export const loadUser = ()  => (dispatch, getState) => {
+    const {user} =  getState();
+    const {date} =  user;
+
+    if(!isTimeout(date, USER_DATA_TTL))
+    {
+        return null;
     }
-}
+    return dispatch(fetchUser());
+};

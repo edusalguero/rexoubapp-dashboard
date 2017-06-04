@@ -1,12 +1,13 @@
 import {FETCH_USER_SUCCESS} from "../constants/actionTypes";
 
 
-const user = (state = {}, action) => {
+const user = (state = {data:{},date:null}, action) => {
     switch (action.type) {
         case FETCH_USER_SUCCESS:
-            return Object.assign({}, state.user,
-                action.response
-            );
+            return Object.assign({}, state.user, {
+                data: action.response,
+                date: + new Date()
+            });
         default:
             return state
     }

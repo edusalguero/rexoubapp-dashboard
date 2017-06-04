@@ -8,12 +8,18 @@ import {Link} from "react-router";
 import PropTypes from "prop-types";
 import {Bar} from "react-chartjs-2";
 
+const loadData = ({ loadServers }) => {
+    loadServers();
+};
+
 class Uptime extends React.Component {
 
-
+    componentWillMount() {
+        loadData(this.props);
+    }
     render() {
         const {servers} = this.props;
-        const {list} = servers;
+        const {summary} = servers;
         const data = {
             labels: [],
             datasets: [
@@ -49,7 +55,7 @@ class Uptime extends React.Component {
             },
             maintainAspectRatio: true
         };
-        list.map((server, index) => {
+        summary.map((server, index) => {
                 data.labels.push(server.label);
                 let uptimeInDays = Math.floor(server.uptime / 86400);
                 data.datasets[0].data.push(uptimeInDays);
@@ -69,6 +75,7 @@ class Uptime extends React.Component {
 }
 
 Uptime.propTypes = {
-    servers: PropTypes.object.isRequired
+    servers: PropTypes.object.isRequired,
+    loadServers: PropTypes.func.isRequired
 };
 export  default Uptime;

@@ -8,13 +8,19 @@ import FontAwesome from 'react-fontawesome';
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
+const loadData = ({ loadServers }) => {
+    loadServers();
+};
+
 class Servers extends React.Component {
 
-
+    componentWillMount() {
+        loadData(this.props);
+    }
     render() {
         const {servers} = this.props;
-        const {list} = servers;
-        const serversList = list.map((server, index) =>
+        const {summary} = servers;
+        const serversList = summary.map((server, index) =>
             <server key={index} className="col-md-6 col-lg-4 col-sm-6 col-xs-12">
                 <h3><small><FontAwesome name="server"/></small> {server.label} <small>is <span className={ `status status-${server.machineStatus.toLowerCase()}`}>{server.machineStatus}</span></small></h3>
                 <ul className="list-unstyled">
@@ -43,7 +49,7 @@ class Servers extends React.Component {
         );
         return <div className="row">
             <div className="col-md-12">
-                <h2>{list.length} Servers</h2>
+                <h2>{summary.length} Servers</h2>
                 <div className="row">
                 <servers>
                     {serversList}
@@ -56,6 +62,7 @@ class Servers extends React.Component {
 }
 
 Servers.propTypes = {
-    servers: PropTypes.object.isRequired
+    servers: PropTypes.object.isRequired,
+    loadServers: PropTypes.func.isRequired
 };
 export  default Servers;

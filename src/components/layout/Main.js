@@ -9,23 +9,41 @@ import Index from "../pages/Index";
 import Servers from "../pages/Servers";
 import Server from "../pages/Server";
 import Uptime from "../pages/Uptime";
-import {loginUser} from "../../actions/auth";
-import {clearErrorMessages} from "../../actions/messages";
 import AlertDangerMessage from "../alert/AlertDangerMessage";
 import {Route} from "react-router-dom";
 import Loader from "../elements/Loader";
+import PropTypes from "prop-types";
+
 class Main extends Component {
 
+    componentWillMount() {
+        const {isAuthenticated, loadUser} = this.props;
+        if(isAuthenticated)
+        {
+            loadUser();
+        }
+    }
     render() {
 
-        const {errorMessage, dispatch, isAuthenticated, user, events, servers, isAppFetching} = this.props;
+        const {errorMessage,
+            clearErrorMessages,
+            loginUser,
+            isAuthenticated,
+            loadEvents,
+            loadUser,
+            loadServers,
+            loadServer,
+            user,
+            events,
+            servers,
+            isAppFetching} = this.props;
         return <main className="container main">
             {errorMessage &&
-            <AlertDangerMessage message={errorMessage} onClose={() => dispatch(clearErrorMessages())}/>
+            <AlertDangerMessage message={errorMessage} onClose={() => clearErrorMessages()}/>
             }
             {!isAuthenticated &&
             <Route exact path="/" render={() => (
-                <Index onFormSubmit={creds => dispatch(loginUser(creds))} errorMessage={errorMessage}/>
+                <Index onFormSubmit={creds => loginUser(creds)} errorMessage={errorMessage}/>
             )}/>
             }
             { isAppFetching &&
@@ -34,16 +52,20 @@ class Main extends Component {
             {isAuthenticated &&
             <authenticated>
                 <Route exact path="/" render={() => (
-                    <Dashboard dispatch={dispatch} user={user} events={events}/>
+                    <Dashboard user={user}
+                               events={events}
+                               loadEvents={loadEvents}
+                               loadServers={loadServers}
+                               loadUser={loadUser}/>
                 )}/>
                 <Route exact path="/servers" render={() => (
-                    <Servers servers={servers}/>
+                    <Servers servers={servers}  loadServers={loadServers}/>
                 )}/>
                 <Route exact path="/server/:id" render={(props) => (
-                    <Server servers={servers} serverId={props.match.params.id} dispatch={dispatch} />
+                    <Server isAppFetching={isAppFetching} servers={servers} serverId={props.match.params.id} loadServer={loadServer}/>
                 )}/>
                 <Route exact path="/uptime" render={() => (
-                    <Uptime servers={servers}/>
+                    <Uptime servers={servers} loadServers={loadServers}/>
                 )}/>
             </authenticated>
 
@@ -53,4 +75,18 @@ class Main extends Component {
     }
 }
 
+Main.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string,
+    isAppFetching: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired,
+    events: PropTypes.object.isRequired,
+    servers: PropTypes.object.isRequired,
+    clearErrorMessages: PropTypes.func.isRequired,
+    loginUser: PropTypes.func.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    loadEvents: PropTypes.func.isRequired,
+    loadServers: PropTypes.func.isRequired,
+    loadServer: PropTypes.func.isRequired
+};
 export default Main;
