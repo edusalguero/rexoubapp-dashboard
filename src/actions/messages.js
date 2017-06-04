@@ -6,7 +6,6 @@ import {MESSAGES_CLEAR_ERROR, MESSAGES_PUSH_ERROR} from "../constants/actionType
 function clearError() {
     return {
         type: MESSAGES_CLEAR_ERROR,
-        errorMessage: ''
     }
 }
 
