@@ -36,29 +36,29 @@ class Dashboard extends React.Component {
             </div>
             <div className="col-md-6 col-sm-12">
                 <div className="row">
-                <div className="col-md-12">
-                    <h3>{serversCount} servers</h3>
-                    <p>A server is anything that can be accessed through ssh to be monitored. </p>
-                    <p><Link to={{pathname: '/servers'}}>View servers »</Link></p>
-                </div>
-                <div className="col-md-12">
-                    <h3>{contactsCount} contacts</h3>
-                    <p>A contact is a email account or Slack channel or username to which will be sent
-                        notifications.</p>
-                    {/*<p><a href="#" role="button">View details »</a></p>*/}
-                </div>
-                <div className="col-md-12">
-                    <h3>{observersCount} observers</h3>
-                    <p>A observer is a monitor who observe a service status and check it to to notify inactivity or
-                        status changes.</p>
-                    {/*<p><a href="#" role="button">View details »</a></p>*/}
-                </div>
-                <div className="col-md-12">
-                    <h3>{harvestersCount} harvesters</h3>
-                    <p>A harvester is a monitor who obtain metrics and check their values to notify alerts and
-                        warnings.</p>
-                    {/*<p><a href="#" role="button">View details »</a></p>*/}
-                </div>
+                    <div className="col-md-12">
+                        <h3>{serversCount} servers</h3>
+                        <p>A server is anything that can be accessed through ssh to be monitored. </p>
+                        <p><Link to={{pathname: '/servers'}}>View servers »</Link></p>
+                    </div>
+                    <div className="col-md-12">
+                        <h3>{contactsCount} contacts</h3>
+                        <p>A contact is a email account or Slack channel or username to which will be sent
+                            notifications.</p>
+                        {/*<p><a href="#" role="button">View details »</a></p>*/}
+                    </div>
+                    <div className="col-md-12">
+                        <h3>{observersCount} observers</h3>
+                        <p>A observer is a monitor who observe a service status and check it to to notify inactivity or
+                            status changes.</p>
+                        {/*<p><a href="#" role="button">View details »</a></p>*/}
+                    </div>
+                    <div className="col-md-12">
+                        <h3>{harvestersCount} harvesters</h3>
+                        <p>A harvester is a monitor who obtain metrics and check their values to notify alerts and
+                            warnings.</p>
+                        {/*<p><a href="#" role="button">View details »</a></p>*/}
+                    </div>
                 </div>
             </div>
         </div>;
