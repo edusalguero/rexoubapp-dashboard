@@ -10,7 +10,7 @@ class Footer extends Component {
     render() {
         return <footer>
             <div className="container">
-                <p>© Rexobador 2017 - Designed and built with fun and effort </p>
+                <p>© Rexobador 2017 - Built with code</p>
             </div>
         </footer>;
 
