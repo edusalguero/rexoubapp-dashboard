@@ -10,9 +10,10 @@ import Servers from "../pages/Servers";
 import Server from "../pages/Server";
 import Uptime from "../pages/Uptime";
 import AlertDangerMessage from "../alert/AlertDangerMessage";
-import {Route} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import Loader from "../elements/Loader";
 import PropTypes from "prop-types";
+import NotFound from "../pages/NotFound";
 
 class Main extends Component {
 
@@ -42,34 +43,42 @@ class Main extends Component {
             <AlertDangerMessage message={errorMessage} onClose={() => clearErrorMessages()}/>
             }
             {!isAuthenticated &&
-            <Route exact path="/" render={() => (
-                <Index onFormSubmit={creds => loginUser(creds)} errorMessage={errorMessage}/>
-            )}/>
+            <notAuthenticated>
+                <Route path="/" render={() => (
+                    <Index onFormSubmit={creds => loginUser(creds)} errorMessage={errorMessage}/>
+                )}/>
+                <Route path="*" render={() => (<Redirect to="/"/>)}/>
+            </notAuthenticated>
             }
             { isAppFetching &&
             <Loader/>
             }
             {isAuthenticated &&
             <authenticated>
-                <Route exact path="/" render={() => (
-                    <Dashboard user={user}
-                               events={events}
-                               loadEvents={loadEvents}
-                               loadServers={loadServers}
-                               loadUser={loadUser}/>
-                )}/>
-                <Route exact path="/servers" render={() => (
-                    <Servers servers={servers}  loadServers={loadServers}/>
-                )}/>
-                <Route exact path="/server/:id" render={(props) => (
-                    <Server isAppFetching={isAppFetching} servers={servers} serverId={props.match.params.id} loadServer={loadServer}/>
-                )}/>
-                <Route exact path="/uptime" render={() => (
-                    <Uptime servers={servers} loadServers={loadServers}/>
-                )}/>
+                <Switch>
+                    <Route exact path="/" render={() => (
+                        <Dashboard user={user}
+                                   events={events}
+                                   loadEvents={loadEvents}
+                                   loadServers={loadServers}
+                                   loadUser={loadUser}/>
+                    )}/>
+                    <Route exact path="/servers" render={() => (
+                        <Servers servers={servers} loadServers={loadServers}/>
+                    )}/>
+                    <Route exact path="/server/:id" render={(props) => (
+                        <Server isAppFetching={isAppFetching} servers={servers} serverId={props.match.params.id}
+                                loadServer={loadServer}/>
+                    )}/>
+                    <Route exact path="/uptime" render={() => (
+                        <Uptime servers={servers} loadServers={loadServers}/>
+                    )}/>
+                    <Route component={NotFound}/>
+                </Switch>
             </authenticated>
 
             }
+
         </main>;
 
     }
