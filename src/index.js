@@ -13,6 +13,7 @@ import user from "./reducers/user";
 import messages from "./reducers/messages";
 import events from "./reducers/events";
 import servers from "./reducers/servers";
+import loading from "./reducers/loading";
 import App from "./components/layout/App.js";
 import {createLogger} from "redux-logger";
 import thunkMiddleware from "redux-thunk";
@@ -28,7 +29,8 @@ const rexobadorDashboard = combineReducers({
     messages,
     user,
     events,
-    servers
+    servers,
+    loading
 });
 const store = createStore(rexobadorDashboard, preloadedState,
     applyMiddleware(thunkMiddleware, api, loggerMiddleware));
