@@ -14,8 +14,8 @@ class ServerMonitoringData extends React.Component {
         return (
             <div>
                 <h4>Monitoring data</h4>
-                <ReactJson name="Harvesters" src={harvesters} collapsed></ReactJson>
-                <ReactJson name="Observers" src={observers} collapsed></ReactJson>
+                <ReactJson name="Harvesters" src={harvesters} collapsed/>
+                <ReactJson name="Observers" src={observers} collapsed/>
             </div>
         );
     }

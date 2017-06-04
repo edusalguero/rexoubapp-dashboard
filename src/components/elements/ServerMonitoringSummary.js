@@ -17,8 +17,7 @@ class ServerMonitoringSummary extends React.Component {
                     <li>
                         Harvest:
                         <ul>
-                            <li>Last harvest at:
-                                <date>{lastHarvestDate}</date>
+                            <li>Last harvest at: <date>{lastHarvestDate}</date>
                             </li>
                             <li>Status: <span
                                 className={ `harvest-status status-${harvestStatus}`}>{harvestStatus}</span>

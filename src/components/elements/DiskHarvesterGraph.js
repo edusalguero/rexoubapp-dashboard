@@ -67,6 +67,6 @@ class DiskHarvesterGraph extends React.Component {
 }
 
 DiskHarvesterGraph.propTypes = {
-    harvest: PropTypes.object.isRequired,
+    harvest: PropTypes.array.isRequired,
 };
 export default DiskHarvesterGraph;

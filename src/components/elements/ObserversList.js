@@ -12,7 +12,7 @@ class ObserversList extends React.Component {
     render() {
         const {observers} = this.props;
         const observersList = observers.map((observer, index) =>
-            <observer key={observer.id}>
+            <observer key={index}>
                 {ucfirst(observer.observer.type.toLowerCase())} <strong>{observer.observer.label}</strong> is <status className={ `status status-${observer.status.toLowerCase()}`}>{observer.status}</status> at {observer.observationDate}
             </observer>
         );
