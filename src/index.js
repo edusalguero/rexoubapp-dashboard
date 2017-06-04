@@ -24,7 +24,7 @@ import {HashRouter as Router} from "react-router-dom";
 const loggerMiddleware = createLogger();
 const preloadedState = {};
 
-const rexobadorDashboard = combineReducers({
+const rexoubadorDashboard = combineReducers({
     auth,
     messages,
     user,
@@ -32,7 +32,7 @@ const rexobadorDashboard = combineReducers({
     servers,
     loading
 });
-const store = createStore(rexobadorDashboard, preloadedState,
+const store = createStore(rexoubadorDashboard, preloadedState,
     applyMiddleware(thunkMiddleware, api, loggerMiddleware));
 
 const root = document.getElementById('app');
