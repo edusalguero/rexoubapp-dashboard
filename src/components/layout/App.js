@@ -12,9 +12,12 @@ import {connect} from "react-redux";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 
+import {} from 'bootstrap/dist/css/bootstrap.css';
+import {} from '../../css/app.css';
+import {} from 'font-awesome/css/font-awesome.css';
+
 import Main from "./Main";
 import {withRouter} from "react-router-dom";
-
 
 import {loadUser} from "../../actions/user";
 import {loadEvents} from "../../actions/events";
