@@ -13,11 +13,12 @@ import {loginUser} from "../../actions/auth";
 import {clearErrorMessages} from "../../actions/messages";
 import AlertDangerMessage from "../alert/AlertDangerMessage";
 import {Route} from "react-router-dom";
+import Loader from "../elements/Loader";
 class Main extends Component {
 
     render() {
 
-        const {errorMessage, dispatch, isAuthenticated, user, events, servers} = this.props;
+        const {errorMessage, dispatch, isAuthenticated, user, events, servers, isAppFetching} = this.props;
         return <main className="container main">
             {errorMessage &&
             <AlertDangerMessage message={errorMessage} onClose={() => dispatch(clearErrorMessages())}/>
@@ -26,6 +27,9 @@ class Main extends Component {
             <Route exact path="/" render={() => (
                 <Index onFormSubmit={creds => dispatch(loginUser(creds))} errorMessage={errorMessage}/>
             )}/>
+            }
+            { isAppFetching &&
+            <Loader/>
             }
             {isAuthenticated &&
             <authenticated>

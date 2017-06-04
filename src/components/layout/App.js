@@ -20,11 +20,16 @@ import {withRouter} from "react-router-dom";
 
 class App extends React.Component {
     render() {
-        const {dispatch, isAuthenticated, errorMessage, user, events, servers} = this.props;
+        const {dispatch, isAuthenticated, errorMessage, user, events, servers, isAppFetching} = this.props;
         return <div>
             <Header isAuthenticated={isAuthenticated} user={user} dispatch={dispatch}/>
-            <Main errorMessage={errorMessage} dispatch={dispatch} isAuthenticated={isAuthenticated}
-                  user={user} events={events} servers={servers}/>
+            <Main errorMessage={errorMessage}
+                  dispatch={dispatch}
+                  isAuthenticated={isAuthenticated}
+                  user={user}
+                  events={events}
+                  servers={servers}
+                  isAppFetching={isAppFetching} />
             <Footer />
         </div>;
 
@@ -41,10 +46,10 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    const {auth, messages, user, events, servers } = state;
-    const {isAuthenticated, isFetching} = auth;
+    const {auth, messages, user, events, servers, loading} = state;
+    const {isAuthenticated} = auth;
     const {errorMessage} = messages;
-    const isAppFetching = isFetching;
+    const isAppFetching = loading.requests > 0;
     return {
         isAuthenticated,
         errorMessage,

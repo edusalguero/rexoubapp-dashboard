@@ -1,3 +1,4 @@
+
 footer {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -71,4 +72,43 @@ harvesters harvester
 {
     width: 33%;
     display: inline-block;
+}
+
+loader{
+}
+
+loader overlay{
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #fff;
+    opacity: 0.8;
+}
+
+loader spinner{
+    height: 100%;
+    width: 100%;
+    top: 200px;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 1051;
+    text-align: center;
+    color: #000;
+}
+
+spinner div{
+
+    margin: 0 auto;
+
+}
+
+spinner .spinner-text{
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: bold;
 }
