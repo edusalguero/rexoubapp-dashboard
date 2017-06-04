@@ -29,10 +29,11 @@ class LogIn extends React.Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
         const username = this.refs.username;
         const password = this.refs.password;
         const creds = {username: username.value.trim(), password: password.value.trim()}
-        this.props.onFormSubmit(creds)
+        this.props.onFormSubmit(creds);
         return false;
     }
 }
