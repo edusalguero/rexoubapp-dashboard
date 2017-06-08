@@ -15,8 +15,8 @@ class Index extends React.Component {
             <div className="row">
                 <div className="col-xs-12 col-sm-9">
                     <div className="jumbotron">
-                        <h1>Rexoubador dashboard</h1>
-                        <p>Rexoubador is a server monitoring platform. Rexoubador dashboard is a place which collates
+                        <h1>Rexoubapp <small>dashboard</small></h1>
+                        <p>Rexoubapp is a server monitoring platform. Rexoubapp dashboard is a place which collates
                             information about your monitors</p>
                     </div>
                 </div>

@@ -23,12 +23,12 @@ class Header extends React.Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <Link to='/' className="navbar-brand">Rexoubador</Link>
+                    <Link to={{pathname: '/'}} className="navbar-brand">Rexoubapp <span>dashboard</span></Link>
                 </div>
                 {isAuthenticated &&
                 <div className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">
-                        <li><Link to={{pathname: '/'}}>Dashboard</Link></li>
+                        <li><Link to={{pathname: '/'}}>Home</Link></li>
                         <li><Link to={{pathname: '/servers'}}>Servers</Link></li>
                         <li><Link to={{pathname: '/uptime'}}>Uptime</Link></li>
                     </ul>
