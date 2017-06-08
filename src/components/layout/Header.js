@@ -9,14 +9,28 @@ import {Link} from "react-router-dom";
 
 class Header extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            collapseNavbar: true,
+        }
+    }
+    toogleNavbar(event)
+    {
+        event.preventDefault();
+        const currentCollapseNavbar = !this.state.collapseNavbar;
+        this.setState({collapseNavbar : currentCollapseNavbar});
+
+    }
     render() {
         const {logoutUser, isAuthenticated, user} = this.props;
-
+        const {collapseNavbar} = this.state;
+console.log(collapseNavbar);
         //noinspection CheckTagEmptyBody
         return <nav className="navbar navbar-default">
             <div className="container">
                 <div className="navbar-header">
-                    <button type="button" className="navbar-toggle collapsed"
+                    <button type="button" className="navbar-toggle collapsed" onClick={(event) => this.toogleNavbar(event)}
                             aria-expanded="false" aria-controls="navbar">
                         <span className="sr-only">Toggle navigation</span>
                         <span className="icon-bar"></span>
@@ -26,7 +40,7 @@ class Header extends React.Component {
                     <Link to={{pathname: '/'}} className="navbar-brand">Rexoubapp <span>dashboard</span></Link>
                 </div>
                 {isAuthenticated &&
-                <div className="navbar-collapse collapse">
+                <div className={ `navbar-collapse ${collapseNavbar===true?"collapse":""}`}>
                     <ul className="nav navbar-nav">
                         <li><Link to={{pathname: '/'}}>Home</Link></li>
                         <li><Link to={{pathname: '/servers'}}>Servers</Link></li>
@@ -34,9 +48,9 @@ class Header extends React.Component {
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li><p className="navbar-text">Signed in as {user.firstName} {user.lastName} </p></li>
-                        <li>
+                        <li className="navbar-btn">
                             <button type="button" onClick={() => logoutUser()}
-                                    className="btn btn-default navbar-btn">Log out
+                                    className="btn btn-default">Log out
                             </button>
                         </li>
                     </ul>
