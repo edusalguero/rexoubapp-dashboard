@@ -75,11 +75,6 @@ server{
     color: red;
 }
 
-harvesters harvester
-{
-    width: 33%;
-    display: inline-block;
-}
 
 loader{
 }

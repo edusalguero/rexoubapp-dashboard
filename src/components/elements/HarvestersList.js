@@ -22,18 +22,18 @@ class HarvestersList extends React.Component {
                 }else if(harvester.harvester.type==='DISK_USAGE'){
                     graph = <DiskHarvesterGraph harvest={harvester.harvest}/>;
                 }
-                return <harvester key={index}>
+                return <div key={index} className="harvester col-sm-12 col-xs-12 col-md-4 col-lg-4">
                     <h5>{harvester.harvester.label}</h5>
                     {graph}
-                </harvester>
+                </div>
             }
         );
         return (
             <div>
                 <h4>Harvesters</h4>
-                <harvesters>
+                <div className="harvesters row">
                     {harvestersList}
-                </harvesters>
+                </div>
             </div>
         );
     }
